@@ -1,0 +1,17 @@
+#user
+
+<h1> register </h1>
+
+<%= form_with scope: :users ,url: users_path , local: true do |f| %>
+    <% if @user.errors.try(:any?) %>
+    <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+    </ul>
+    <% end %>
+        <%= f.text_field :name, placeholder: "Name" %> <br><br>
+        <%= f.text_field :email, placeholder: "email" %> <br><br>
+        <%= f.text_field :password, placeholder: "Password" %> <br><br>
+        <%= f.submit "singup" %>
+<% end %>

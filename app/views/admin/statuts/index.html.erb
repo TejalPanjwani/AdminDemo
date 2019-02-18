@@ -1,0 +1,49 @@
+#Admin
+<br>
+<table border>
+<tr>
+    <th>username</th>
+    <th>servicename</th>
+    <th>description</th>
+</tr>
+
+
+
+<% @services.each do |u|    %>
+<tr>
+    <td>
+        <h3><%= u.username %> </h3>
+    </td>
+    <td> 
+        <h3><%= u.servicename %> </h3>
+    </td>
+    <td>
+        <h3><%= u.descrition %> </h3>
+    </td>
+    <td>
+        <% if u.statutsofservice== "penddingservice" %>
+    
+            <%= link_to "accept", admin_acceptservice_path(u) %>
+            <%= link_to "reject", admin_rejectservice_path(u) %>
+        <% elsif u.statutsofservice== "acceptservice" %>
+            <%= "accepted" %>
+    
+        <% elsif u.statutsofservice== "rejectservice" %>
+            <%= "rejected" %>
+    <% end %>
+    
+    </td>
+
+
+    
+</tr>
+<%end%>
+<table>
+
+<% if current_user %>  
+Logged in as <%= current_user.name %>.  
+<%= link_to "Log Out", sessions_destroy_path %>  
+<% else %>  
+<%= link_to "registration",register_users_path %> or  
+<%= link_to "Log In", sessions_new_path %>  
+<% end %>  
